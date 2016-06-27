@@ -1,4 +1,6 @@
 # ngNumber
+
+[![Join the chat at https://gitter.im/miamarti/ngNumber](https://badges.gitter.im/miamarti/ngNumber.svg)](https://gitter.im/miamarti/ngNumber?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Fields formatting mask in angularJs
 
 <p>
