@@ -1,0 +1,6 @@
+{
+  "name": "ngNumber",
+  "tagline": "AngularJS number formatter",
+  "body": "# ngNumber\r\nFields formatting mask in angularJs\r\n\r\n<p>\r\n  <a href=\"https://gitter.im/miamarti/ngNumber\" target=\"_blank\"><img src=\"https://img.shields.io/gitter/room/nwjs/nw.js.svg\"></a>\r\n  <img src=\"https://img.shields.io/badge/ngNumber-release-green.svg\">\r\n  <img src=\"https://img.shields.io/badge/version-1.0.0-blue.svg\">\r\n  <img src=\"https://img.shields.io/github/license/mashape/apistatus.svg\">\r\n  <a href=\"https://github.com/miamarti/ngNumber/tarball/master\"><img src=\"https://img.shields.io/github/downloads/atom/atom/latest/total.svg\"></a>\r\n</p>\r\n\r\nAngularJS component responsible for formatting date fields.\r\n\r\n```\r\n<input type=\"text\" ng-number>\r\n```\r\n\r\n## Bower install de dependency\r\n```\r\n$ bower install ngNumber --save\r\n```\r\n\r\n## Module AngularJS include\r\n```\r\nangular.module('example', [\"ngNumber\"]);\r\n```\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
