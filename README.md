@@ -1,5 +1,5 @@
 # ngNumber
-Fields formatting mask in angularJs
+Number formatting in angularJs
 
 <p>
   <a href="https://gitter.im/miamarti/ngNumber" target="_blank"><img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg"></a>
@@ -9,7 +9,7 @@ Fields formatting mask in angularJs
   <a href="https://github.com/miamarti/ngNumber/tarball/master"><img src="https://img.shields.io/github/downloads/atom/atom/latest/total.svg"></a>
 </p>
 
-AngularJS component responsible for formatting date fields.
+AngularJS component responsible for formatting number fields.
 
 ```
 <input type="text" ng-number>
