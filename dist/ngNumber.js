@@ -39,7 +39,6 @@
                 };
                 element.bind('propertychange blur', function () {
                     if (element.val().trim() !== '') {
-                        console.log(scope.ngModel);
                         element.val(fn(scope.ngModel, 2, ',', '.'));
                     } else {
                         element.val('');
