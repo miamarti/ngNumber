@@ -19,7 +19,7 @@
                 };
                 var $formatters = function (value) {
                     if (value && value.toString().trim() !== '') {
-                        return fn(value.replace(/,/g, '.'), 0, ',', '.');
+                        return fn(value.toString().replace(/,/g, '.'), 0, ',', '.');
                     } else {
                         return '';
                     }
@@ -46,6 +46,10 @@
                 });
                 ctrl.$formatters.push($formatters);
                 ctrl.$parsers.push($parsers);
+                
+                scope.$watch('ngModel', function (value) {
+                    console.log(value);
+                });
             }
         };
     });
