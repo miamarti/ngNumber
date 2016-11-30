@@ -19,7 +19,7 @@
                 };
                 var $formatters = function (value) {
                     if (value && value.toString().trim() !== '') {
-                        return fn(value.toString().replace(/,/g, '.'), 0, ',', '.');
+                        return fn(parseFloat(value.toString()), 2, ',', '.');
                     } else {
                         return '';
                     }
