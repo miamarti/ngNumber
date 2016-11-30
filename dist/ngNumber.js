@@ -4,11 +4,14 @@
         return {
             restrict: 'A',
             require: 'ngModel',
+            scope: {
+                ngModel: '=ngModel'
+            },
             link: function (scope, element, attrs, ctrl) {
                 var fn = function (n, c, d, t) {
                     c = isNaN(c = Math.abs(c)) ? 2 : c;
-                    d = d === undefined ? "." : d;
-                    t = t === undefined ? "," : t;
+                    d = d === undefined ? "," : d;
+                    t = t === undefined ? "." : t;
                     var s = n < 0 ? "-" : "";
                     var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "";
                     var j = (j = i.length) > 3 ? j % 3 : 0;
@@ -16,19 +19,19 @@
                 };
                 var $formatters = function (value) {
                     if (value && value.toString().trim() !== '') {
-                        return fn(value, 0, '.', ',');
+                        return fn(value.replace(/,/g, '.'), 0, ',', '.');
                     } else {
                         return '';
                     }
                 };
                 var $parsers = function (value) {
-                    if (value.trim() !== '') {
-                        if (isNaN(parseInt(value.trim().replace(/,/g, '')))) {
-                            var newValue = value.trim().toUpperCase().replace(/[A-Z]/g, '');
+                    if (value.trim() !== '') {                        
+                        if (isNaN(parseFloat(value.trim().replace(/\./g, '').replace(/,/g, '.')))) {
+                            var newValue = value.trim().toUpperCase().replace(/[A-Z]/g, '').replace(/\./g, '');
                             element.val(newValue);
-                            return newValue;
+                            return newValue.replace(/,/g, '.');
                         } else {
-                            return parseInt(value.trim().replace(/,/g, ''));
+                            return parseFloat(value.trim().replace(/\./g, '').replace(/,/g, '.'));
                         }
                     } else {
                         return '';
@@ -36,7 +39,8 @@
                 };
                 element.bind('propertychange blur', function () {
                     if (element.val().trim() !== '') {
-                        element.val(fn(element.val().trim().replace(/,/g, ''), 0, '.', ','));
+                        console.log(scope.ngModel);
+                        element.val(fn(scope.ngModel, 2, ',', '.'));
                     } else {
                         element.val('');
                     }
