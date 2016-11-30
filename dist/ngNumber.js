@@ -46,10 +46,6 @@
                 });
                 ctrl.$formatters.push($formatters);
                 ctrl.$parsers.push($parsers);
-                
-                scope.$watch('ngModel', function (value) {
-                    console.log(value);
-                });
             }
         };
     });
