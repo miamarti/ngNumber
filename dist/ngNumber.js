@@ -27,11 +27,11 @@
                 var $parsers = function (value) {
                     if (value.trim() !== '') {                        
                         if (isNaN(parseFloat(value.trim().replace(/\./g, '').replace(/,/g, '.')))) {
-                            var newValue = value.trim().toUpperCase().replace(/[A-Z]/g, '').replace(/\./g, '');
+                            var newValue = value.trim().toUpperCase().replace(/[A-Z]/g, '').replace(/[a-z]/g, '').replace(/\./g, '');
                             element.val(newValue);
                             return newValue.replace(/,/g, '.');
                         } else {
-                            return parseFloat(value.trim().replace(/\./g, '').replace(/,/g, '.'));
+                            return parseFloat(value.trim().replace(/[A-Z]/g, '').replace(/[a-z]/g, '').replace(/\./g, '').replace(/,/g, '.'));
                         }
                     } else {
                         return '';
@@ -42,6 +42,14 @@
                         element.val(fn(scope.ngModel, 2, ',', '.'));
                     } else {
                         element.val('');
+                    }
+                });
+                element.bind('keyup', function () {
+                    var rgx1 = /[A-Z]/g,
+                        rgx2 = /[a-z]/g,
+                        rgx3 = /\./g;
+                    if (rgx1.test(element.val()) || rgx2.test(element.val()) || rgx3.test(element.val())) {
+                        element.val(element.val().replace(/\./g, '').replace(/[A-Z]/g, '').replace(/[a-z]/g, ''));
                     }
                 });
                 ctrl.$formatters.push($formatters);
