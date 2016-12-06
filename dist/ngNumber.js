@@ -25,7 +25,7 @@
                     }
                 };
                 var $parsers = function (value) {
-                    if (value.trim() !== '') {                        
+                    if (value.trim() !== '') {
                         if (isNaN(parseFloat(value.trim().replace(/\./g, '').replace(/,/g, '.')))) {
                             var newValue = value.trim().toUpperCase().replace(/[A-Z]/g, '').replace(/[a-z]/g, '').replace(/\./g, '');
                             element.val(newValue);
@@ -44,14 +44,49 @@
                         element.val('');
                     }
                 });
-                element.bind('keyup', function () {
-                    var rgx1 = /[A-Z]/g,
-                        rgx2 = /[a-z]/g,
-                        rgx3 = /\./g;
-                    if (rgx1.test(element.val()) || rgx2.test(element.val()) || rgx3.test(element.val())) {
-                        element.val(element.val().replace(/\./g, '').replace(/[A-Z]/g, '').replace(/[a-z]/g, ''));
+
+                element.bind('keyup', function (e) {
+                    var field = e.target.value;
+                    while (field.charAt(0) == '0') {
+                        field = field.substr(1);
                     }
+
+                    var point = field.indexOf(".");
+                    if (point >= 0) {
+                        field = field.slice(0, point + 3);
+                    }
+
+                    var decimalSplit = e.target.value.split(",");
+                    var intPart = decimalSplit[0];
+                    var decPart = decimalSplit[1];
+
+                    intPart = intPart.replace(/[^\d]/g, '');
+                    if (intPart.length > 3) {
+                        var intDiv = Math.floor(intPart.length / 3);
+                        while (intDiv > 0) {
+                            var lastComma = intPart.indexOf(".");
+                            if (lastComma < 0) {
+                                lastComma = intPart.length;
+                            }
+
+                            if (lastComma - 3 > 0) {
+                                intPart = intPart.split('');
+                                intPart.splice(lastComma - 3, 0, '.');
+                                intPart = intPart.toString().replace(/,/g, '')
+                            }
+                            intDiv--;
+                        }
+                    }
+
+                    if (decPart === undefined) {
+                        decPart = "";
+                    } else {
+                        decPart = "," + decPart;
+                    }
+                    var res = intPart.trim().replace(/[A-Z]/g, '').replace(/[a-z]/g, '') + decPart.trim().replace(/[A-Z]/g, '').replace(/[a-z]/g, '');
+                    element.val(res);
                 });
+
                 ctrl.$formatters.push($formatters);
                 ctrl.$parsers.push($parsers);
             }
